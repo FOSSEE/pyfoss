@@ -5,6 +5,7 @@
 		<title>{{ page.heading }} | python.fossee.in</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
 	</head>
 	<body>
 		<div id="page-wrapper">
@@ -13,41 +14,92 @@
 				{% block header %}
 				<div id="header-wrapper">
 					<div id="header-inner">
-					
-					<ul>
-					{% for nav in navs %}
+						<div id="branding" class="pull-left">
+							<img id="brand-logo" src="{% static 'images/pylogo.png' %}">
+							<span id="brand-text">Python</span>
+						</div>
 
-						<li><a href="{% url 'website:dispatcher' nav.link %}"> {{ nav.nav_name }}</a></li>
-						<ul>
-						{% for subnav in nav.subnav_set.all %}
-							<li><a href="{% url 'website:dispatcher' subnav.link %}">{{ subnav.subnav_name }}</a></li>
+						<ul id="main-nav" class="nav nav-pills pull-right">
+						{% for nav in navs %}
+							{% with subnavs=nav.subnav_set.all %}
+							<li class="dropdown">
+								<a  class="dropdown-toggle" data-toggle="dropdown" href="#">
+									{{ nav.nav_name }} {% if subnavs|length > 0 %} <span class="caret"></span> {% endif %}
+								</a>
+								{% if subnavs|length > 0 %}
+									<ul class="dropdown-menu pull-right">
+									{% for subnav in subnavs %}
+										<li><a href="{% url 'website:dispatcher' subnav.link %}">{{ subnav.subnav_name }}</a></li>
+									{% endfor %}
+									</ul>
+								{% endif %}
+							</li>
+							{% endwith %}
 						{% endfor %}
 						</ul>
-
-					{% endfor %}
-					</ul>
-
+					<div class="clearfix"></div>
 					</div> <!-- /header-inner -->
 				</div> <!-- /header-wrapper -->
 				{% endblock %}
 
 				{% block content %}
 				<div id="content-wrapper">
-					<div id="content-inner">
+					<div id="content-inner" class="row">
+							<div id="content" class="col-lg-10">
+								<h3>{{ page.heading }} </h3>
+								<p>
+									{{ page.content|safe }}
+								</p>
+							</div> <!-- /content -->
 
+							<div id="sidebar" class="col-lg-2">
+								<div class="block">
+									<h5 class="block-heading">Projects</h4>
+									<ul>
+										<li><a href="#">Hello World</a></li>
+										<li><a href="#">Hello World</a></li>
+										<li><a href="#">Hello World</a></li>
+										<li><a href="#">Hello World</a></li>
+										<li><a href="#">Hello World</a></li>
+									</ul>
+								</div> <!-- /block -->
+
+								<div class="block">
+									<h5 class="block-heading">FOSSEE</h4>
+									<ul>
+										<li><a href="#">Hello World</a></li>
+										<li><a href="#">Hello World</a></li>
+										<li><a href="#">Hello World</a></li>
+										<li><a href="#">Hello World</a></li>
+										<li><a href="#">Hello World</a></li>
+									</ul>
+								</div> <!-- /block -->
+							</div> <!-- /sidebar -->
+							<div class="clearfix"></div>
 					</div> <!-- /content-inner -->
 				</div> <!-- /content-wrapper -->
 				{% endblock %}
 
+				<div id="extra-wrapper">
+					<div id="extra-inner" class="row">
+						<!-- /future use -->
+					</div> <!-- /extra-inner -->
+				</div> <!-- /extra-wrapper -->
+
 				{% block footer %}
 				<div id="footer-wrapper">
 					<div id="footer-inner">
-
+						Hello World
 					</div> <!-- /footer-inner -->
 				</div> <!-- /footer-wrapper -->
 				{% endblock %}
 
 			{% endblock %}
 		</div>
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script type="text/javascript">
+			
+		</script>
 	</body>
 </html>

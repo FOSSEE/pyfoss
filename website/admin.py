@@ -1,6 +1,7 @@
 from django.contrib import admin
+from nested_inlines.admin import NestedModelAdmin, NestedStackedInline, NestedTabularInline
 
-from website.models import Nav, SubNav, Page
+from website.models import Nav, SubNav, Page, Link, LinkBox, TextBox, Block
 
 class SubNavInline(admin.TabularInline):
 	model = SubNav
@@ -13,5 +14,23 @@ class NavAdmin(admin.ModelAdmin):
 class PageAdmin(admin.ModelAdmin):
 	list_display = ('heading', 'permalink', 'visible')
 
+class LinkInline(NestedTabularInline):
+	model = Link
+	extra = 0
+
+class LinkBoxInline(NestedStackedInline):
+	model = LinkBox
+	inlines = [LinkInline]
+	extra = 0
+
+class TextBoxInline(NestedStackedInline):
+	model = TextBox
+	extra = 0
+
+class BlockAdmin(NestedModelAdmin):
+	model = Block
+	inlines = [LinkBoxInline, TextBoxInline]
+
 admin.site.register(Nav, NavAdmin)
 admin.site.register(Page, PageAdmin)
+admin.site.register(Block, BlockAdmin)
