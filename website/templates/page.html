@@ -53,27 +53,28 @@
 							</div> <!-- /content -->
 
 							<div id="sidebar" class="col-lg-2">
-								<div class="block">
-									<h5 class="block-heading">Projects</h4>
-									<ul>
-										<li><a href="#">Hello World</a></li>
-										<li><a href="#">Hello World</a></li>
-										<li><a href="#">Hello World</a></li>
-										<li><a href="#">Hello World</a></li>
-										<li><a href="#">Hello World</a></li>
-									</ul>
-								</div> <!-- /block -->
+								{% for block in sidebar %}
+									{% if block.linkbox_name %}
+										<div class="block">
+											<h5 class="block-heading">{{ block.linkbox_name }}</h4>
+											<ul>
+												{% for link in block.link_set.all|dictsort:"position" %}
+												<li><a href="{% url 'website:dispatcher' link.link %}">{{ link.link_name }}</a></li>
+												{% endfor %}
+											</ul>
+										</div> <!-- /block -->
+									{% endif %}
 
-								<div class="block">
-									<h5 class="block-heading">FOSSEE</h4>
-									<ul>
-										<li><a href="#">Hello World</a></li>
-										<li><a href="#">Hello World</a></li>
-										<li><a href="#">Hello World</a></li>
-										<li><a href="#">Hello World</a></li>
-										<li><a href="#">Hello World</a></li>
-									</ul>
-								</div> <!-- /block -->
+									{% if block.textbox_name %}
+										<div class="block">
+											<h5 class="block-heading">{{ block.textbox_name }}</h4>
+											<p>
+												{{ block.content }}
+											</p>
+										</div> <!-- /block -->
+									{% endif %}
+
+								{% endfor %}
 							</div> <!-- /sidebar -->
 							<div class="clearfix"></div>
 					</div> <!-- /content-inner -->

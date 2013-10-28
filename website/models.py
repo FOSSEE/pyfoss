@@ -66,4 +66,4 @@ class TextBox(models.Model):
 	visible = models.BooleanField()
 
 	def __unicode__(self):
-		return self.box_name
+		return self.textbox_name
