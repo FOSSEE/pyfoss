@@ -26,7 +26,7 @@ def dispatcher(request, permalink=''):
 	navs = Nav.objects.order_by('position')
 
 	sidebar = Block.objects.get(block_name = "sidebar")
-	footer = Block.objects.get(block_name = "sidebar")
+	footer = Block.objects.get(block_name = "footer")
 	
 	#
 	sidebar = block_sort(sidebar)

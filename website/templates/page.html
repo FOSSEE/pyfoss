@@ -69,7 +69,7 @@
 										<div class="block">
 											<h5 class="block-heading">{{ block.textbox_name }}</h4>
 											<p>
-												{{ block.content }}
+												{{ block.content|safe }}
 											</p>
 										</div> <!-- /block -->
 									{% endif %}
@@ -90,7 +90,29 @@
 				{% block footer %}
 				<div id="footer-wrapper">
 					<div id="footer-inner">
-						Hello World
+						{% for block in footer %}
+							{% if block.linkbox_name %}
+								<div class="foot col-lg-4">
+									<h5 class="foot-heading">{{ block.linkbox_name }}</h4>
+									<ul>
+										{% for link in block.link_set.all|dictsort:"position" %}
+										<li><a href="{% url 'website:dispatcher' link.link %}">{{ link.link_name }}</a></li>
+										{% endfor %}
+									</ul>
+								</div> <!-- /foot -->
+							{% endif %}
+
+							{% if block.textbox_name %}
+								<div class="foot col-lg-4">
+									<h5 class="foot-heading">{{ block.textbox_name }}</h4>
+									<p>
+										{{ block.content|safe }}
+									</p>
+								</div> <!-- /foot -->
+							{% endif %}
+
+						{% endfor %}
+						<div class="clearfix"></div>
 					</div> <!-- /footer-inner -->
 				</div> <!-- /footer-wrapper -->
 				{% endblock %}
