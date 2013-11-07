@@ -22,8 +22,17 @@
 						<ul id="main-nav" class="nav nav-pills pull-right">
 						{% for nav in navs %}
 							{% with subnavs=nav.subnav_set.all %}
+							{% if nav.link|slice:":4" == "http" or nav.link == "#" %}
+							<li>
+								<a href="{{ nav.link }}">
+							{% else %}
 							<li class="dropdown">
+							    {% if subnavs|length > 0 %}
 								<a  class="dropdown-toggle" data-toggle="dropdown" href="#">
+								{% else %}
+								<a href="{% url 'website:dispatcher' nav.link %}">
+								{% endif %}
+							{% endif %}
 									{{ nav.nav_name }} {% if subnavs|length > 0 %} <span class="caret"></span> {% endif %}
 								</a>
 								{% if subnavs|length > 0 %}
@@ -59,7 +68,11 @@
 											<h5 class="block-heading">{{ block.linkbox_name }}</h4>
 											<ul>
 												{% for link in block.link_set.all|dictsort:"position" %}
+												{% if link.link|slice:":4" == "http" or nav.link == "#" %}
+												<li><a href="{{link.link}}">{{ link.link_name }}</a></li>
+												{% else %}
 												<li><a href="{% url 'website:dispatcher' link.link %}">{{ link.link_name }}</a></li>
+												{% endif %}
 												{% endfor %}
 											</ul>
 										</div> <!-- /block -->
@@ -96,7 +109,11 @@
 									<h5 class="foot-heading">{{ block.linkbox_name }}</h4>
 									<ul>
 										{% for link in block.link_set.all|dictsort:"position" %}
+										{% if link.link|slice:":4" == "http" or link.link == "#" %}
+										<li><a href="{{ link.link }}">{{ link.link_name }}</a></li>
+										{% else %}
 										<li><a href="{% url 'website:dispatcher' link.link %}">{{ link.link_name }}</a></li>
+										{% endif %}
 										{% endfor %}
 									</ul>
 								</div> <!-- /foot -->
@@ -113,12 +130,14 @@
 
 						{% endfor %}
 						<div class="clearfix"></div>
+						<img id="django-logo" src="{% static 'images/django-logo.png' %}">
 					</div> <!-- /footer-inner -->
 				</div> <!-- /footer-wrapper -->
 				{% endblock %}
 
 			{% endblock %}
-		</div>
+		</div> <!-- /page-wrapper -->
+
 		<script src="{% static 'js/jquery.min.js' %}"></script>
 		<script src="{% static 'js/bootstrap.min.js' %}"></script>
 		<script type="text/javascript">

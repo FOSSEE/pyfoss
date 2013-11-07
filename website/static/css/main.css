@@ -36,7 +36,7 @@ body{
 	box-shadow: 1px 1px 15px #cccccc;
 	background: #ffffff;
 }
-#header-inner, #content-inner, #extra-inner, #footer-inner{
+#header-inner, #content-inner, #extra-inner, #footer-inner, #credits{
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 10px 15px;
@@ -78,6 +78,7 @@ ul.nav li > a:focus{
 	padding-bottom: 25px;
 }
 #footer-wrapper{
+    position: relative;
 	background-color: #2F353A;
 	color: #ffffff;
 }
@@ -110,7 +111,13 @@ ul.nav li > a:focus{
 	transition: padding .5s ease-out 0s;
 }
 #sidebar ul li a:hover{
-	padding-left: 10px;
+	padding-left: 5px;
+}
+#django-logo{
+    position: absolute;
+    width: 35px;
+    right: 10px;
+    bottom: 7px;
 }
 .block{
 	margin-top: 25px;
