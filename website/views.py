@@ -40,4 +40,4 @@ def dispatcher(request, permalink=''):
 		'sidebar': blocks['sidebar'],
 		'footer': blocks['footer']
 	}
-    return render_to_response('page.html', context)
+    return render_to_response('website/templates/page.html', context)
