@@ -38,7 +38,7 @@
                         {% if subnavs|length > 0 %}
                         <ul class="dropdown-menu pull-right">
                         {% for subnav in subnavs %}
-                            {% if subnav.link:slice:":4" == "http" or subnav.link == "#" %}
+                            {% if subnav.link|slice:":4" == "http" or subnav.link == "#" %}
                                 <li><a href="{{ subnav.link }}" target="_blank">{{ subnav.subnav_name }}</a></li>
                             {% else %}
                                 <li><a href="{% url 'website:dispatcher' subnav.link %}">{{ subnav.subnav_name }}</a></li>
