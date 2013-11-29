@@ -70,7 +70,7 @@
                             <ul>
                                 {% for link in block.link_set.all|dictsort:"position" %}
                                 {% if link.link|slice:":4" == "http" or nav.link == "#" %}
-                                <li><a href="{{link.link}}">{{ link.link_name }}</a></li>
+                                <li><a href="{{link.link}}" target="_blank">{{ link.link_name }}</a></li>
                                 {% else %}
                                 <li><a href="{% url 'website:dispatcher' link.link %}">{{ link.link_name }}</a></li>
                                 {% endif %}
@@ -112,7 +112,7 @@
                     <ul>
                     {% for link in block.link_set.all|dictsort:"position" %}
                     {% if link.link|slice:":4" == "http" or link.link == "#" %}
-                    <li><a href="{{ link.link }}">{{ link.link_name }}</a></li>
+                    <li><a href="{{ link.link }}" target="_blank">{{ link.link_name }}</a></li>
                     {% else %}
                     <li><a href="{% url 'website:dispatcher' link.link %}">{{ link.link_name }}</a></li>
                     {% endif %}
