@@ -54,13 +54,6 @@
             {% block content %}
             <div id="content-wrapper">
                 <div id="content-inner" class="row">
-                    <div id="content" class="col-lg-10 col-md-10 col-sm-10">
-                        <h3>{{ page.heading }} </h3>
-                        <p>
-                        {{ page.content|safe }}
-                        </p>
-                    </div> <!-- /content -->
-
                     <div id="sidebar" class="col-lg-2 col-md-2 col-sm-2">
                         {% for block in sidebar %}
                         {% if block.linkbox_name %}
@@ -89,6 +82,14 @@
 
                         {% endfor %}
                     </div> <!-- /sidebar -->
+
+                    <div id="content" class="col-lg-10 col-md-10 col-sm-10">
+                        <h3>{{ page.heading }} </h3>
+                        <p>
+                        {{ page.content|safe }}
+                        </p>
+                    </div> <!-- /content -->
+
                     <div class="clearfix"></div>
                 </div> <!-- /content-inner -->
             </div> <!-- /content-wrapper -->
