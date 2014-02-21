@@ -1,152 +1,155 @@
 {% load static %}
 <!doctype html>
 <html>
-    <head>
-        <title>{{ page.heading }} | python.fossee.in</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'website/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'website/css/bootstrap-theme.min.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'website/css/lightbox.css'%}">
-        <link rel="stylesheet" type="text/css" href="{% static 'website/css/main.css'%}">
-    </head>
-    <body>
-        <div id="page-wrapper">
-        {% block page %}
+	<head>
+		<title>{{ page.heading }} | python.fossee.in</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+	</head>
+	<body>
+		<div id="page-wrapper">
+			{% block page %}
+				
+				{% block header %}
+				<div id="header-wrapper">
+					<div id="header-inner">
+						<div id="branding" class="pull-left">
+							<a href="http://python.fossee.in" style="text-decoration: none; color: #424242">
+							    <img id="brand-logo" src="{% static 'images/pylogo.png' %}">
+							    <span id="brand-text">Python</span>
+							</a>
+						</div>
 
-            {% block header %}
-            <div id="header-wrapper">
-                <div id="header-inner">
-                    <div id="branding" class="pull-left">
-                        <img id="brand-logo" src="{% static 'website/images/pylogo.png' %}">
-                        <span id="brand-text">Python</span>
-                    </div>
+						<ul id="main-nav" class="nav nav-pills pull-right">
+						{% for nav in navs %}
+							{% with subnavs=nav.subnav_set.all %}
+							{% if nav.link|slice:":4" == "http" or nav.link == "#" %}
+							<li>
+								<a href="{{ nav.link }}">
+							{% else %}
+							<li class="dropdown">
+							    {% if subnavs|length > 0 %}
+								<a  class="dropdown-toggle" data-toggle="dropdown" href="#">
+								{% else %}
+								<a href="{% url 'website:dispatcher' nav.link %}">
+								{% endif %}
+							{% endif %}
+									{{ nav.nav_name }} {% if subnavs|length > 0 %} <span class="caret"></span> {% endif %}
+								</a>
+								{% if subnavs|length > 0 %}
+									<ul class="dropdown-menu pull-right">
+									{% for subnav in subnavs %}
+										<li><a href="{% url 'website:dispatcher' subnav.link %}">{{ subnav.subnav_name }}</a></li>
+									{% endfor %}
+									</ul>
+								{% endif %}
+							</li>
+							{% endwith %}
+						{% endfor %}
+						</ul>
+					<div class="clearfix"></div>
+					</div> <!-- /header-inner -->
+				</div> <!-- /header-wrapper -->
+				{% endblock %}
 
-                    <ul id="main-nav" class="nav nav-pills pull-right">
-                        {% for nav in navs %}
-                        {% with subnavs=nav.subnav_set.all %}
-                        {% if nav.link|slice:":4" == "http" or nav.link == "#" %}
-                        <li>
-                        <a href="{{ nav.link }}">
-                        {% else %}
-                        <li class="dropdown">
-                        {% if subnavs|length > 0 %}
-                        <a  class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        {% else %}
-                        <a href="{% url 'website:dispatcher' nav.link %}">
-                        {% endif %}
-                        {% endif %}
-                        {{ nav.nav_name }} {% if subnavs|length > 0 %} <span class="caret"></span> {% endif %}
-                        </a>
-                        {% if subnavs|length > 0 %}
-                        <ul class="dropdown-menu pull-right">
-                        {% for subnav in subnavs %}
-                            {% if subnav.link|slice:":4" == "http" or subnav.link == "#" %}
-                                <li><a href="{{ subnav.link }}" target="_blank">{{ subnav.subnav_name }}</a></li>
-                            {% else %}
-                                <li><a href="{% url 'website:dispatcher' subnav.link %}">{{ subnav.subnav_name }}</a></li>
-                            {% endif %}
-                        {% endfor %}
-                        </ul>
-                        {% endif %}
-                        </li>
-                        {% endwith %}
-                        {% endfor %}
-                    </ul>
-                    <div class="clearfix"></div>
-                </div> <!-- /header-inner -->
-            </div> <!-- /header-wrapper -->
-            {% endblock %}
+				{% block content %}
+				<div id="content-wrapper">
+					<div id="content-inner" class="row">
+							<div id="content" class="col-lg-10">
+								<h3>{{ page.heading }} </h3>
+								<p>
+									{{ page.content|safe }}
+								</p>
+							</div> <!-- /content -->
 
-            {% block content %}
-            <div id="content-wrapper">
-                <div id="content-inner" class="row">
-                    
-                    <div id="sidebar" class="col-lg-2 col-md-2 col-sm-2">
-                        {% for block in sidebar %}
-                        {% if block.linkbox_name %}
-                        <div class="block">
-                            <h5 class="block-heading">{{ block.linkbox_name }}</h4>
-                            <ul>
-                                {% for link in block.link_set.all|dictsort:"position" %}
-                                {% if link.link|slice:":4" == "http" or nav.link == "#" %}
-                                <li><a href="{{link.link}}" target="_blank">{{ link.link_name }}</a></li>
-                                {% else %}
-                                <li><a href="{% url 'website:dispatcher' link.link %}">{{ link.link_name }}</a></li>
-                                {% endif %}
-                                {% endfor %}
-                            </ul>
-                        </div> <!-- /block -->
-                        {% endif %}
+							<div id="sidebar" class="col-lg-2">
+								{% for block in sidebar %}
+									{% if block.linkbox_name %}
+										<div class="block">
+											<h5 class="block-heading">{{ block.linkbox_name }}</h4>
+											<ul>
+												{% for link in block.link_set.all|dictsort:"position" %}
+												{% if link.link|slice:":4" == "http" or nav.link == "#" %}
+												<li><a href="{{link.link}}">{{ link.link_name }}</a></li>
+												{% else %}
+												<li><a href="{% url 'website:dispatcher' link.link %}">{{ link.link_name }}</a></li>
+												{% endif %}
+												{% endfor %}
+											</ul>
+										</div> <!-- /block -->
+									{% endif %}
 
-                        {% if block.textbox_name %}
-                        <div class="block">
-                            <h5 class="block-heading">{{ block.textbox_name }}</h4>
-                            <p>
-                            {{ block.content|safe }}
-                            </p>
-                        </div> <!-- /block -->
-                        {% endif %}
+									{% if block.textbox_name %}
+										<div class="block">
+											<h5 class="block-heading">{{ block.textbox_name }}</h4>
+											<p>
+												{{ block.content|safe }}
+											</p>
+										</div> <!-- /block -->
+									{% endif %}
 
-                        {% endfor %}
-                    </div> <!-- /sidebar -->
+								{% endfor %}
+							</div> <!-- /sidebar -->
+							<div class="clearfix"></div>
+					</div> <!-- /content-inner -->
+				</div> <!-- /content-wrapper -->
+				{% endblock %}
 
-                    <div id="content" class="col-lg-10 col-md-10 col-sm-10">
-                        <h3>{{ page.heading }} </h3>
-                        <p>
-                        {{ page.content|safe }}
-                        </p>
-                    </div> <!-- /content -->
+				<div id="extra-wrapper">
+					<div id="extra-inner" class="row">
+						<!-- /future use -->
+					</div> <!-- /extra-inner -->
+				</div> <!-- /extra-wrapper -->
 
-                    <div class="clearfix"></div>
-                </div> <!-- /content-inner -->
-            </div> <!-- /content-wrapper -->
-            {% endblock %}
+				{% block footer %}
+				<div id="footer-wrapper">
+					<div id="footer-inner">
+						{% for block in footer %}
+							{% if block.linkbox_name %}
+								<div class="foot col-lg-4">
+									<h5 class="foot-heading">{{ block.linkbox_name }}</h4>
+									<ul>
+										{% for link in block.link_set.all|dictsort:"position" %}
+										{% if link.link|slice:":4" == "http" or link.link == "#" %}
+										<li><a href="{{ link.link }}">{{ link.link_name }}</a></li>
+										{% else %}
+										<li><a href="{% url 'website:dispatcher' link.link %}">{{ link.link_name }}</a></li>
+										{% endif %}
+										{% endfor %}
+									</ul>
+								</div> <!-- /foot -->
+							{% endif %}
 
-            <div id="extra-wrapper">
-                <div id="extra-inner" class="row">
-                    <!-- /future use -->
-                </div> <!-- /extra-inner -->
-            </div> <!-- /extra-wrapper -->
+							{% if block.textbox_name %}
+								<div class="foot col-lg-4">
+									<h5 class="foot-heading">{{ block.textbox_name }}</h4>
+									<p>
+										{{ block.content|safe }}
+									</p>
+								</div> <!-- /foot -->
+							{% endif %}
 
-            {% block footer %}
-            <div id="footer-wrapper">
-                <div id="footer-inner">
-                    {% for block in footer %}
-                    {% if block.linkbox_name %}
-                    <div class="foot col-lg-4 col-md-4 col-sm-4">
-                    <h5 class="foot-heading">{{ block.linkbox_name }}</h4>
-                    <ul>
-                    {% for link in block.link_set.all|dictsort:"position" %}
-                    {% if link.link|slice:":4" == "http" or link.link == "#" %}
-                    <li><a href="{{ link.link }}" target="_blank">{{ link.link_name }}</a></li>
-                    {% else %}
-                    <li><a href="{% url 'website:dispatcher' link.link %}">{{ link.link_name }}</a></li>
-                    {% endif %}
-                    {% endfor %}
-                    </ul>
-                    </div> <!-- /foot -->
-                    {% endif %}
+						{% endfor %}
+						<div class="clearfix"></div>
+						<img id="django-logo" src="{% static 'images/django-logo.png' %}">
+					</div> <!-- /footer-inner -->
+				</div> <!-- /footer-wrapper -->
+				<center>
+				    Sponsored by:<br>
+                    National Mission on Education through ICT<br>
+                    MHRD<br>
+                    <a href="http://www.sakshat.ac.in" target="_blank">http://www.sakshat.ac.in</a>
+                </center>
+				{% endblock %}
 
-                    {% if block.textbox_name %}
-                    <div class="foot col-lg-4 col-lg-4 col-sm-4">
-                    <h5 class="foot-heading">{{ block.textbox_name }}</h4>
-                    <p>
-                    {{ block.content|safe }}
-                    </p>
-                    </div> <!-- /foot -->
-                    {% endif %}
+			{% endblock %}
+		</div> <!-- /page-wrapper -->
 
-                    {% endfor %}
-                    <div class="clearfix"></div>
-                    <img id="django-logo" src="{% static 'website/images/django-logo.png' %}">
-                </div> <!-- /footer-inner -->
-            </div> <!-- /footer-wrapper -->
-            {% endblock %}
-
-        {% endblock %}
-        </div> <!-- /page-wrapper -->
-
-    <script src="{% static 'website/js/jquery.min.js' %}"></script>
-    <script src="{% static 'website/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'website/js/lightbox.min.js' %}"></script>
-    </body>
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script type="text/javascript">
+			
+		</script>
+	</body>
 </html>
