@@ -26,8 +26,15 @@
             <div id="header-wrapper">
                 <div id="header-inner">
                     <div id="branding" class="pull-left">
+<<<<<<< HEAD
                         <img id="brand-logo" src="{% static 'website/images/pylogo.png' %}">
                         <a id="brand-text" href="{% url 'website:home' %}">Python</a>
+=======
+                        <a href="http://python.fossee.in" style="text-decoration: none; color: #424242">
+							    <img id="brand-logo" src="{% static 'images/pylogo.png' %}">
+							    <span id="brand-text">Python</span>
+    					</a>
+>>>>>>> 65954e0afb8a51122241296c083a565d83e984dc
                     </div>
 
                     <ul id="main-nav" class="nav nav-pills pull-right">
@@ -150,6 +157,12 @@
                     <img id="django-logo" src="{% static 'website/images/django-logo.png' %}">
                 </div> <!-- /footer-inner -->
             </div> <!-- /footer-wrapper -->
+            <center>
+				    Sponsored by:<br>
+                    National Mission on Education through ICT<br>
+                    MHRD<br>
+                    <a href="http://www.sakshat.ac.in" target="_blank">http://www.sakshat.ac.in</a>
+           </center>
             {% endblock %}
         {% endblock %}
         </div> <!-- /page-wrapper -->
