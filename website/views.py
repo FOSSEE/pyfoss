@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render, render_to_response, get_object_or_404
 
 from website.models import Nav, Page, Block
 
@@ -38,6 +38,7 @@ def dispatcher(request, permalink=''):
 		'page': page,
 		'navs': blocks['navs'],
 		'sidebar': blocks['sidebar'],
-		'footer': blocks['footer']
+		'footer': blocks['footer'],
+		'permalink': permalink
 	}
-    return render_to_response('website/templates/page.html', context)
+    return render(request, 'website/templates/page.html', context)

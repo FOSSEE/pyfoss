@@ -7,8 +7,18 @@
         <link rel="stylesheet" type="text/css" href="{% static 'website/css/bootstrap-theme.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'website/css/lightbox.css'%}">
         <link rel="stylesheet" type="text/css" href="{% static 'website/css/main.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'website/css/nice-bar.css'%}">
     </head>
     <body>
+	{% if  permalink == 'home'%}
+	<div class="nice-bar">
+	    <p class="nice-text">
+		Developers required for <em>NMEICT/MHRD</em> funded FOSSEE project.
+		<a class="nice-button" href="http://fossee.in/jobs">View more</a> details.
+		<span class="nice-close">x</span>
+	    </p>
+	</div>
+	{% endif %}
         <div id="page-wrapper">
         {% block page %}
 
@@ -17,7 +27,7 @@
                 <div id="header-inner">
                     <div id="branding" class="pull-left">
                         <img id="brand-logo" src="{% static 'website/images/pylogo.png' %}">
-                        <span id="brand-text">Python</span>
+                        <a id="brand-text" href="{% url 'website:home' %}">Python</a>
                     </div>
 
                     <ul id="main-nav" class="nav nav-pills pull-right">
@@ -141,13 +151,20 @@
                 </div> <!-- /footer-inner -->
             </div> <!-- /footer-wrapper -->
             {% endblock %}
-
         {% endblock %}
         </div> <!-- /page-wrapper -->
+<div id="credits">
+<center>
+	This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br />
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+	<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+</center>
+</div>
 
     <script src="{% static 'website/js/jquery.min.js' %}"></script>
     <script src="{% static 'website/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'website/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'website/js/nice-bar.js' %}"></script>
     </body>
 </html>
 

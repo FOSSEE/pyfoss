@@ -148,3 +148,16 @@ ul.nav li > a:focus{
 }
 .foot ul li a{
 	color: #ffffff;
+}
+.testimonial {
+	background: #f5f5f5;
+	padding: 10px;
+	border-radius: 5px;
+	margin-bottom: 15px;
+	font-size: 0.9em;
+}
+.testimonial-author {
+	margin: 5px;
+	padding: 5px;
+	background: #ffffff;
+}
