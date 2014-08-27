@@ -26,17 +26,13 @@
             <div id="header-wrapper">
                 <div id="header-inner">
                     <div id="branding" class="pull-left">
-<<<<<<< HEAD
                         <img id="brand-logo" src="{% static 'website/images/pylogo.png' %}">
                         <a id="brand-text" href="{% url 'website:home' %}">Python</a>
-=======
                         <a href="http://python.fossee.in" style="text-decoration: none; color: #424242">
 							    <img id="brand-logo" src="{% static 'images/pylogo.png' %}">
 							    <span id="brand-text">Python</span>
     					</a>
->>>>>>> 65954e0afb8a51122241296c083a565d83e984dc
                     </div>
-
                     <ul id="main-nav" class="nav nav-pills pull-right">
                         {% for nav in navs %}
                         {% with subnavs=nav.subnav_set.all %}
