@@ -1,3 +1,4 @@
+
 {% load static %}
 <!doctype html>
 <html>
@@ -7,18 +8,21 @@
         <link rel="stylesheet" type="text/css" href="{% static 'website/css/bootstrap-theme.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'website/css/lightbox.css'%}">
         <link rel="stylesheet" type="text/css" href="{% static 'website/css/main.css'%}">
-        <link rel="stylesheet" type="text/css" href="{% static 'website/css/nice-bar.css'%}">
     </head>
     <body>
+  <link rel="stylesheet" type="text/css" href="http://fossee.in/data/banner/css/nice-bar.css" />
+   <script type="text/javascript" src="http://fossee.in/data/banner/js/nice-bar.js"></script>
 	{% if  permalink == 'home'%}
-	<div class="nice-bar">
-	    <p class="nice-text">
-		Developers required for <em>NMEICT/MHRD</em> funded FOSSEE project.
-		<a class="nice-button" href="http://fossee.in/jobs">View more</a> details.
-		<span class="nice-close">x</span>
-	    </p>
-	</div>
-	{% endif %}
+
+
+<!--<div class="nice-bar">
+<center>
+<a class="nice-text" href="https://docs.google.com/forms/d/e/1FAIpQLSfMg5E9EauODDxgsP1j67FK6MsESNp7qi4kN2VnrEAm57IznA/viewform" target="_blank">  <img src="http://fossee.in/data/banner/images/OM_webbnr3.png" > </a>
+        </center>
+
+</div>-->
+
+ 	{% endif %}
         <div id="page-wrapper">
         {% block page %}
 
@@ -28,7 +32,6 @@
                     <div id="branding" class="pull-left">
                         <img id="brand-logo" src="{% static 'website/images/pylogo.png' %}">
                         <a href="http://python.fossee.in" style="text-decoration: none; color: #424242">
-							    <img id="brand-logo" src="{% static 'images/pylogo.png' %}">
 							    <span id="brand-text">Python</span>
     					</a>
                     </div>
@@ -173,6 +176,32 @@
     <script src="{% static 'website/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'website/js/lightbox.min.js' %}"></script>
     <script src="{% static 'website/js/nice-bar.js' %}"></script>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://analytics.spoken-tutorial.org/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 14]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ ga('create', 'UA-60190813-1', 'auto');
+ ga('send', 'pageview');
+
+</script>
+<noscript><p><img src="http://analytics.spoken-tutorial.org/piwik.php?idsite=14" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
     </body>
 </html>
 
