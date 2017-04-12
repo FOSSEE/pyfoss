@@ -107,8 +107,24 @@
 				<!--------------------------- -->
 			{% if permalink == 'python-workshops' %}
 					      <div id="content" class="col-lg-10 col-md-10 col-sm-10">
+
                     <h3>Pyhton Workshops </h3>
                     <br>
+                    <p>
+						{% if page.content %}
+							{{ page.content|safe }}
+                        {% endif %}
+                    </p>
+ <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapsestats">
+         Python Workshop Statistics
+        </a>
+      </h4>
+    </div>
+    <div id="collapsestats" class="panel-collapse collapse in">
+      <div class="panel-body">
                      <p>
 				<table class="table table-striped table-hover">
 					<tr>
@@ -129,8 +145,10 @@
 						{% endfor %}
 				</table>
 				</p>
-				  </div> <!-- /content -->
-
+      </div>
+    </div>
+  </div>
+  </div> <!-- /content -->
 			{% else %}
 			 <div id="content" class="col-lg-10 col-md-10 col-sm-10">
                         <h3>{{ page.heading }} </h3>
