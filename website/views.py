@@ -33,16 +33,16 @@ def dispatcher(request, permalink=''):
 	if permalink == 'python-workshops':
 		blocks = get_blocks()
 		rows = FOSSEEStats.objects.using('fossee_in').filter(foss_name='Python', type ='Workshop').order_by('-w_id')
+		python_wokshop_page_content = Page.objects.get(permalink='python-workshops-page')
 
 		context = {
+			'page' : python_wokshop_page_content,
 			'navs': blocks['navs'],
 			'sidebar': blocks['sidebar'],
 			'footer': blocks['footer'],
 			'permalink': permalink,
 			'obj' : rows,
 		}
-		#rows = FOSSEEStats.objects.using('fossee_in').all()
-		#return render(request, 'website/templates/test.html',context)
 
 	if permalink == '' or permalink == 'home' :
 		permalink = 'home'
