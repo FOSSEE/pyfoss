@@ -182,6 +182,8 @@ table.tablesorter thead tr .header {
 	background-repeat: no-repeat;
 	background-position: center right;
 	cursor: pointer;
+	text-align: center;
+	vertical-align: middle;
 }
 table.tablesorter tbody td {
 	color: #3D3D3D;
