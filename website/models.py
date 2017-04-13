@@ -67,3 +67,29 @@ class TextBox(models.Model):
 
 	def __unicode__(self):
 		return self.textbox_name
+"""
+Models from fossee_new Database created using inspectdb
+Use it with the "fossee_in" database eg:using("fossee_in")
+These models are used only for django orm reference.
+"""
+class FOSSEEStats(models.Model):
+	w_id = models.IntegerField(unique=True, primary_key=True)
+	foss_name = models.CharField(max_length=500)
+	type = models.CharField(max_length=50)
+	w_name = models.CharField(max_length=500)
+	body = models.TextField()
+	no_of_participant	 = models.IntegerField(max_length=5)
+	event_link = models.TextField()
+	startdate = models.DateTimeField()
+	starttime = models.TimeField()
+	enddate = models.DateTimeField()
+	endtime = models.TimeField()
+	venue = models.CharField(max_length=500)
+	street = models.CharField(max_length=500)
+	country = models.CharField(max_length=100)
+	state = models.CharField(max_length=100)
+	city = models.CharField(max_length=100)
+	pincode = models.IntegerField(default=0)
+	class Meta:
+		db_table = 'workshop'
+

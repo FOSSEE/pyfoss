@@ -8,7 +8,7 @@
     width: 1200px;
     margin: 0 auto;
     padding: 12px 0;
-    color: #ffffff;
+    color: #000;
     font-weight: bold;
 }
 .nice-bar .nice-button {
@@ -26,6 +26,7 @@
     float: right;
     padding: 1px 7px 2px 7px;
     background: #111111;
+    color:#fff;
     -webkit-border-radius: 3px;
        -moz-border-radius: 3px;
          -o-border-radius: 3px;
