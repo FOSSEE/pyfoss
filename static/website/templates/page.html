@@ -155,7 +155,51 @@
       </div>
     </div>
   </div>
-  </div> <!-- /content -->
+  </div>
+		{% elif permalink == 'textbook-companions-for-academics' %}
+		<div id="content" class="col-lg-10 col-md-10 col-sm-10">
+
+                    <h3>Textbook Companions (TBC) for Academics </h3>
+                    <br>
+                    <p>
+						{% if page.content %}
+							{{ page.content|safe }}
+                        {% endif %}
+                    </p>
+ <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapsestats">
+         List of completed books
+        </a>
+      </h4>
+    </div>
+    <div id="collapsestats" class="panel-collapse collapse">
+      <div class="panel-body">
+                     <p>
+				<table id= "tbctable" class="tablesorter table table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Sr No.</th>
+						<th>Book</th>
+
+					</tr>
+					</thead>
+					<tbody>
+						{% for b in obj %}
+					<tr>
+						<td>{{ forloop.counter }}</td>
+						<td><a href="http://tbc-python.fossee.in/book-details/{{ b.id }}" target="_blank">{{ b.title }} by {{ b.author }}</a></td>
+					</tr>
+						{% endfor %}
+				</tbody>
+				</table>
+				</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- /content -->
 			{% else %}
 			 <div id="content" class="col-lg-10 col-md-10 col-sm-10">
                         <h3>{{ page.heading }} </h3>
@@ -260,7 +304,7 @@
 <script type="text/javascript">
 $(document).ready(function()
 	{
-		$("#statstable").tablesorter();
+		$("#tbctable").tablesorter();
 	}
 );
 </script>

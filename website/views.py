@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, get_object_or_404
-from website.models import FOSSEEStats
+from website.models import FOSSEEStats, TBCPYTHONBook
 
 from website.models import Nav, Page, Block
 
@@ -44,6 +44,20 @@ def dispatcher(request, permalink=''):
 			'obj' : rows,
 		}
 
+	if permalink == 'textbook-companions-for-academics':
+		blocks = get_blocks()
+		python_wokshop_page_content = Page.objects.get(permalink='textbook-companions-for-academics-page')
+		completed_books = TBCPYTHONBook.objects.using('tbcpython').values('id', 'title', 'author').filter(approved=True).order_by('id')
+
+		context = {
+			'page' : python_wokshop_page_content,
+			'navs': blocks['navs'],
+			'sidebar': blocks['sidebar'],
+			'footer': blocks['footer'],
+			'permalink': permalink,
+			'obj' : completed_books,
+		}
+
 	if permalink == '' or permalink == 'home' :
 		permalink = 'home'
 		page = get_object_or_404(Page, permalink=permalink)
@@ -56,7 +70,7 @@ def dispatcher(request, permalink=''):
 			'permalink': permalink
 		}
 
-	if permalink != 'home' and permalink != 'python-workshops':
+	if permalink != 'home' and permalink != 'python-workshops' and permalink != 'textbook-companions-for-academics':
 		page = get_object_or_404(Page, permalink=permalink)
 		blocks = get_blocks()
 		context = {

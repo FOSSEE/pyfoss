@@ -1,6 +1,6 @@
 #Custom settings for pyfoss project.
 from os.path import *
-from config import DB_NAME_DEFAULT, DB_USER_DEFAULT, DB_PASS_DEFAULT, DB_HOST_DEFAULT, DB_PORT_DEFAULT, DB_NAME_FOSSEEIN, DB_USER_FOSSEEIN, DB_PASS_FOSSEEIN, DB_HOST_FOSSEEIN, DB_PORT_FOSSEEIN
+from config import DB_NAME_DEFAULT, DB_USER_DEFAULT, DB_PASS_DEFAULT, DB_HOST_DEFAULT, DB_PORT_DEFAULT, DB_NAME_FOSSEEIN, DB_USER_FOSSEEIN, DB_PASS_FOSSEEIN, DB_HOST_FOSSEEIN, DB_PORT_FOSSEEIN, DB_NAME_TBC_PYTHON, DB_USER_TBC_PYTHON, DB_PASS_TBC_PYTHON, DB_HOST_TBC_PYTHON, DB_PORT_TBC_PYTHON
 
 PROJECT_DIR = abspath(dirname(__file__) + '/../')
 PYFOSS_DIR = PROJECT_DIR + '/pyfoss/'
@@ -45,6 +45,14 @@ DATABASES = {
         'PASSWORD': DB_PASS_FOSSEEIN,
         'HOST': DB_HOST_FOSSEEIN,                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': DB_PORT_FOSSEEIN,                      # Set to empty string for default.
+    },
+    'tbcpython': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': DB_NAME_TBC_PYTHON,                      # Or path to database file if using sqlite3.
+        'USER': DB_USER_TBC_PYTHON,
+        'PASSWORD': DB_PASS_TBC_PYTHON,
+        'HOST': DB_HOST_TBC_PYTHON,                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': DB_PORT_TBC_PYTHON,                      # Set to empty string for default.
     }
 }
 
