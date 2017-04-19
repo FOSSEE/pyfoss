@@ -46,7 +46,7 @@ def dispatcher(request, permalink=''):
 		textbook_companions_for_academics = Page.objects.get(permalink='textbook-companions-for-academics-page')
 		completed_books = TBCPYTHONBook.objects.using('tbcpython').values('id', 'title', 'author').filter(approved=True).order_by('id')
 
-		context['page'] = textbook_companions_for_academics,
+		context['page'] = textbook_companions_for_academics
 		context['permalink'] = permalink
 		context['obj'] = completed_books
 
