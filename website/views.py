@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, get_object_or_404
-from website.models import FOSSEEStats
+from website.models import FOSSEEStats, TBCPYTHONBook
 
 from website.models import Nav, Page, Block
 
@@ -20,50 +20,50 @@ def block_sort(obj):
 	return items
 
 def get_blocks():
-    sidebar = Block.objects.get(block_name = "sidebar")
-    footer = Block.objects.get(block_name = "footer")
-    blocks = {
-        'navs': Nav.objects.order_by('position'),
-        'sidebar': block_sort(sidebar),
-        'footer': block_sort(footer)
-    }
-    return blocks
+	sidebar = Block.objects.get(block_name = "sidebar")
+	footer = Block.objects.get(block_name = "footer")
+	blocks = {
+		'navs': Nav.objects.order_by('position'),
+		'sidebar': block_sort(sidebar),
+		'footer': block_sort(footer)
+	}
+	return blocks
 
 def dispatcher(request, permalink=''):
+	context = {}
+
 	if permalink == 'python-workshops':
 		blocks = get_blocks()
 		rows = FOSSEEStats.objects.using('fossee_in').filter(foss_name='Python', type ='Workshop').order_by('-w_id')
 		python_wokshop_page_content = Page.objects.get(permalink='python-workshops-page')
 
-		context = {
-			'page' : python_wokshop_page_content,
-			'navs': blocks['navs'],
-			'sidebar': blocks['sidebar'],
-			'footer': blocks['footer'],
-			'permalink': permalink,
-			'obj' : rows,
-		}
+		context['page'] = python_wokshop_page_content
+		context['permalink'] = permalink
+		context['obj'] = rows
+
+	if permalink == 'textbook-companions-for-academics':
+		blocks = get_blocks()
+		textbook_companions_for_academics = Page.objects.get(permalink='textbook-companions-for-academics-page')
+		completed_books = TBCPYTHONBook.objects.using('tbcpython').values('id', 'title', 'author').filter(approved=True).order_by('id')
+
+		context['page'] = textbook_companions_for_academics
+		context['permalink'] = permalink
+		context['obj'] = completed_books
 
 	if permalink == '' or permalink == 'home' :
 		permalink = 'home'
 		page = get_object_or_404(Page, permalink=permalink)
 		blocks = get_blocks()
-		context = {
-			'page': page,
-			'navs': blocks['navs'],
-			'sidebar': blocks['sidebar'],
-			'footer': blocks['footer'],
-			'permalink': permalink
-		}
+		context['page'] =  page
+		context['permalink'] = permalink
 
-	if permalink != 'home' and permalink != 'python-workshops':
+	if permalink != 'home' and permalink != 'python-workshops' and permalink != 'textbook-companions-for-academics':
 		page = get_object_or_404(Page, permalink=permalink)
 		blocks = get_blocks()
-		context = {
-			'page': page,
-			'navs': blocks['navs'],
-			'sidebar': blocks['sidebar'],
-			'footer': blocks['footer'],
-			'permalink': permalink
-		}
+		context['page'] =  page
+		context['permalink'] = permalink
+
+	context['navs'] = blocks['navs']
+	context['sidebar'] = blocks['sidebar']
+	context['footer'] = blocks['footer']
 	return render(request, 'website/templates/page.html', context)
