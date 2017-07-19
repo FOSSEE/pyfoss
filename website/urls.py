@@ -1,8 +1,8 @@
-from django.conf.urls import patterns, include, url
-
-urlpatterns = patterns('',
+from django.conf.urls import  include, url
+from .views import dispatcher
+urlpatterns = [
 
 	# Main pages dispatcher
-	url(r'^$', 'website.views.dispatcher', name="home"),
-	url(r'^(?P<permalink>.+)/$', 'website.views.dispatcher', name="dispatcher"),
-)
+	url(r'^$', dispatcher, name="home"),
+	url(r'^(?P<permalink>.+)/$', dispatcher, name="dispatcher"),
+]

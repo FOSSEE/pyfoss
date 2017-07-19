@@ -1,5 +1,6 @@
+
 from django.contrib import admin
-from nested_inlines.admin import NestedModelAdmin, NestedStackedInline, NestedTabularInline
+from nested_inline.admin import NestedModelAdmin, NestedStackedInline, NestedTabularInline
 
 from website.models import Nav, SubNav, Page, Link, LinkBox, TextBox, Block
 
