@@ -12,7 +12,7 @@ BASE_DIR = dirname(dirname(abspath(__file__)))
 # Django settings for pyfoss project.
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -139,6 +139,7 @@ TEMPLATES = [
 ]
 
 
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -154,12 +155,6 @@ ROOT_URLCONF = 'pyfoss.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'pyfoss.wsgi.application'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    PROJECT_DIR + '/static/',
-)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
