@@ -1,15 +1,19 @@
 #Custom settings for pyfoss project.
 from os.path import *
-from config import DB_NAME_DEFAULT, DB_USER_DEFAULT, DB_PASS_DEFAULT, DB_HOST_DEFAULT, DB_PORT_DEFAULT, DB_NAME_FOSSEEIN, DB_USER_FOSSEEIN, DB_PASS_FOSSEEIN, DB_HOST_FOSSEEIN, DB_PORT_FOSSEEIN, DB_NAME_TBC_PYTHON, DB_USER_TBC_PYTHON, DB_PASS_TBC_PYTHON, DB_HOST_TBC_PYTHON, DB_PORT_TBC_PYTHON
+from config import ( DB_NAME_DEFAULT, DB_USER_DEFAULT, DB_PASS_DEFAULT, 
+DB_HOST_DEFAULT, DB_PORT_DEFAULT, DB_NAME_FOSSEEIN, DB_USER_FOSSEEIN, 
+DB_PASS_FOSSEEIN, DB_HOST_FOSSEEIN, DB_PORT_FOSSEEIN )
+
 
 PROJECT_DIR = abspath(dirname(__file__) + '/../')
 PYFOSS_DIR = PROJECT_DIR + '/pyfoss/'
 WEBSITE_DIR = PROJECT_DIR + '/website/'
 
+BASE_DIR = dirname(dirname(abspath(__file__)))
 # Django settings for pyfoss project.
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -32,15 +36,16 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': DB_NAME_DEFAULT,                      # Or path to database file if using sqlite3.
+        'NAME': DB_NAME_DEFAULT,
         'USER': DB_USER_DEFAULT,
         'PASSWORD': DB_PASS_DEFAULT,
-        'HOST': DB_HOST_DEFAULT,                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': DB_PORT_DEFAULT,                      # Set to empty string for default.
+        'HOST': DB_HOST_DEFAULT,
+        'PORT': DB_PORT_DEFAULT,  # Or path to database file if using sqlite3.                      
+        # Set to empty string for default.
     },
-    'fossee_in': {
+    'fossee_new': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': DB_NAME_FOSSEEIN,                      # Or path to database file if using sqlite3.
+        'NAME': DB_NAME_FOSSEEIN,
         'USER': DB_USER_FOSSEEIN,
         'PASSWORD': DB_PASS_FOSSEEIN,
         'HOST': DB_HOST_FOSSEEIN,                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
@@ -53,6 +58,7 @@ DATABASES = {
         'PASSWORD': DB_PASS_TBC_PYTHON,
         'HOST': DB_HOST_TBC_PYTHON,                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': DB_PORT_TBC_PYTHON,                      # Set to empty string for default.
+
     }
 }
 
@@ -116,18 +122,32 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '8c8tb3=y%+0_ax+uyu%v*t#ly8&5=h78qwx1&15a0c59!x5a4f'
 
 # List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
+
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -136,7 +156,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'pyfoss.urls'
@@ -144,12 +164,6 @@ ROOT_URLCONF = 'pyfoss.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'pyfoss.wsgi.application'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    PROJECT_DIR + '/static/',
-)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -158,7 +172,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'nested_inlines',
+    'nested_inline',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

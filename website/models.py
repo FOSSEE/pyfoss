@@ -92,7 +92,7 @@ class FOSSEEStats(models.Model):
 	type = models.CharField(max_length=50)
 	w_name = models.CharField(max_length=500)
 	body = models.TextField()
-	no_of_participant	 = models.IntegerField(max_length=5)
+	no_of_participant	 = models.IntegerField()
 	event_link = models.TextField()
 	startdate = models.DateTimeField()
 	starttime = models.TimeField()

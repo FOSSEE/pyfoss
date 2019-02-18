@@ -34,7 +34,7 @@ def dispatcher(request, permalink=''):
 
 	if permalink == 'python-workshops':
 		blocks = get_blocks()
-		rows = FOSSEEStats.objects.using('fossee_in').filter(foss_name='Python', type ='Workshop').order_by('-w_id')
+		rows = FOSSEEStats.objects.using('fossee_new').filter(foss_name='Python', type ='Workshop').order_by('-w_id')
 		python_wokshop_page_content = Page.objects.get(permalink='python-workshops-page')
 
 		context['page'] = python_wokshop_page_content
@@ -60,10 +60,12 @@ def dispatcher(request, permalink=''):
 	if permalink != 'home' and permalink != 'python-workshops' and permalink != 'textbook-companions-for-academics':
 		page = get_object_or_404(Page, permalink=permalink)
 		blocks = get_blocks()
-		context['page'] =  page
-		context['permalink'] = permalink
+		context = {
+			'page': page,
+			'navs': blocks['navs'],
+			'sidebar': blocks['sidebar'],
+			'footer': blocks['footer'],
+			'permalink': permalink
+		}
+	return render(request, "website/page.html", context)
 
-	context['navs'] = blocks['navs']
-	context['sidebar'] = blocks['sidebar']
-	context['footer'] = blocks['footer']
-	return render(request, 'website/templates/page.html', context)
