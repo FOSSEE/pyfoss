@@ -67,4 +67,4 @@ def dispatcher(request, permalink=''):
         page = get_object_or_404(Page, permalink=permalink)
         context['page'] = page
 
-    return render(request, "website/page.html", context)
+    return render(request, "page.html", context)
