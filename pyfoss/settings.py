@@ -58,7 +58,7 @@ ROOT_URLCONF = 'pyfoss.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [PROJECT_DIR + '/static/website/templates', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
