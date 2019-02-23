@@ -22,8 +22,7 @@
 <a href="https://fossee.in/fellowship/2019" target="_blank"> <img src="https://static.fossee.in/fossee/banners/fellowship_2019_3.gif"></a>
 </center>
 </div>
-<!--<h4 style="width:100%;text-align:center;color:red;font-weight:bold;">Koha Library Management System Workshop in IIT Bombay | 4 August 2018. For more details <a href="https://www.it.iitb.ac.in/lakshya/workshopContent.html?workshopid=ouNj7Y0p5jvaDS39PBjLPg" target="_blank" style="color:#1982d1">Click Here</a></h4>
--->
+
  	{% endif %}
         <div id="page-wrapper">
         {% block page %}
@@ -37,7 +36,7 @@
 							    <span id="brand-text">Python</span>
     					</a>
                     </div>
-                    <ul id="main-nav" class="nav nav-pills pull-right">
+                    <ul id="main-nav" class="nav nav-pills pull-right navbar navbar-default">
                         {% for nav in navs %}
                         {% with subnavs=nav.subnav_set.all %}
                         {% if nav.link|slice:":4" == "http" or nav.link == "#" %}
@@ -229,7 +228,7 @@
     <script src="{% static 'website/js/jquery.min.js' %}"></script>
     <script src="{% static 'website/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'website/js/lightbox.min.js' %}"></script>
-< !--Piwik-- >
+<!-- Piwik -->
 <script type="text/javascript">
   var _paq = _paq || [];
   _paq.push(['trackPageView']);
@@ -250,15 +249,7 @@
 
  ga('create', 'UA-60190813-1', 'auto');
  ga('send', 'pageview');
-//Lee
-//var secondTracker = _gat._getTracker("UA-20817855-1");
-//secondTracker._initData();
-//secondTracker._trackPageview();
 
- ga('create', 'UA-20817855-1', 'auto' , 'clientTracker');
- ga('clientTracker.send', 'pageview');
-
-//Lee End
 </script>
 <noscript><p><img src="https://analytics.spoken-tutorial.org/piwik.php?idsite=14" style="border:0;" alt="" /></p></noscript>
 <!-- End Piwik Code -->
