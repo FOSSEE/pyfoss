@@ -1,4 +1,4 @@
-from django.conf.urls import  include, url, re_path
+from django.conf.urls import include, url, re_path
 from .views import dispatcher
 from . import views
 app_name = 'website'
