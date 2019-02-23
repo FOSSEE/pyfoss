@@ -79,29 +79,37 @@ WSGI_APPLICATION = 'pyfoss.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': DB_NAME_DEFAULT,
         'USER': DB_USER_DEFAULT,
         'PASSWORD': DB_PASS_DEFAULT,
         'HOST': DB_HOST_DEFAULT,
-        'PORT': DB_PORT_DEFAULT,  # Or path to database file if using sqlite3.                      
+        'PORT': DB_PORT_DEFAULT,  # Or path to database file if using sqlite3.
         # Set to empty string for default.
     },
     'fossee_new': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': DB_NAME_FOSSEEIN,
         'USER': DB_USER_FOSSEEIN,
         'PASSWORD': DB_PASS_FOSSEEIN,
-        'HOST': DB_HOST_FOSSEEIN,                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': DB_PORT_FOSSEEIN,                      # Set to empty string for default.
+        # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'HOST': DB_HOST_FOSSEEIN,
+        # Set to empty string for default.
+        'PORT': DB_PORT_FOSSEEIN,
     },
     'tbcpython': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': DB_NAME_TBC_PYTHON,                      # Or path to database file if using sqlite3.
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql',
+        # Or path to database file if using sqlite3.
+        'NAME': DB_NAME_TBC_PYTHON,
         'USER': DB_USER_TBC_PYTHON,
         'PASSWORD': DB_PASS_TBC_PYTHON,
-        'HOST': DB_HOST_TBC_PYTHON,                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': DB_PORT_TBC_PYTHON,                      # Set to empty string for default.
+        # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'HOST': DB_HOST_TBC_PYTHON,
+        # Set to empty string for default.
+        'PORT': DB_PORT_TBC_PYTHON,
 
     }
 }
