@@ -69,7 +69,8 @@ def dispatcher(request, permalink=''):
         page = get_object_or_404(Page, permalink=permalink)
         context['page'] = page
 
-    if permalink != 'home' and permalink != 'python-workshops' and permalink != 'textbook-companions-for-academics':
+    if permalink != 'home' and permalink != 'python-workshops' and \
+            permalink != 'textbook-companions-for-academics':
         page = get_object_or_404(Page, permalink=permalink)
         context['page'] = page
 
