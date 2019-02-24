@@ -14,17 +14,9 @@
     </head>
     <body>
   <link rel="stylesheet" type="text/css" href="https://fossee.in/data/banner/css/nice-bar.css" />
-   <script type="text/javascript" src="https://fossee.in/data/banner/js/nice-bar.js"></script>
-	{% if  permalink == 'home'%}
-
-<div class="nice-bar">
-<center>
-<a href="https://fossee.in/fellowship/2019" target="_blank"> <img src="https://static.fossee.in/fossee/banners/fellowship_2019_3.gif"></a>
-</center>
-</div>
-
- 	{% endif %}
-        <div id="page-wrapper">
+  <script type="text/javascript" src="https://fossee.in/data/banner/js/nice-bar.js"></script>
+  {{ banner | safe }}
+         <div id="page-wrapper">
         {% block page %}
 
             {% block header %}

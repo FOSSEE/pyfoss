@@ -1,8 +1,10 @@
 
 from django.contrib import admin
-from nested_inline.admin import NestedModelAdmin, NestedStackedInline, NestedTabularInline
+from nested_inline.admin import (NestedModelAdmin, NestedStackedInline,
+                                 NestedTabularInline)
 
-from website.models import Nav, SubNav, Page, Link, LinkBox, TextBox, Block
+from website.models import (Nav, SubNav, Page, Link,
+                            LinkBox, TextBox, Block, Banner)
 
 
 class SubNavInline(admin.TabularInline):
@@ -43,3 +45,4 @@ class BlockAdmin(NestedModelAdmin):
 admin.site.register(Nav, NavAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(Block, BlockAdmin)
+admin.site.register(Banner)

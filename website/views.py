@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, get_object_or_404
 from website.models import FOSSEEStats, TBCPYTHONBook
 
-from website.models import Nav, Page, Block
+from website.models import Nav, Page, Block, Banner
 
 
 def block_sort(obj):
@@ -24,10 +24,11 @@ def block_sort(obj):
 def get_blocks():
     sidebar = Block.objects.get(block_name="sidebar")
     footer = Block.objects.get(block_name="footer")
+
     blocks = {
         'navs': Nav.objects.order_by('position'),
         'sidebar': block_sort(sidebar),
-        'footer': block_sort(footer)
+        'footer': block_sort(footer),
     }
     return blocks
 
@@ -35,12 +36,17 @@ def get_blocks():
 def dispatcher(request, permalink=''):
 
     blocks = get_blocks()
+    banner = Banner.objects.filter(visible=1)
     context = {
         'navs': blocks['navs'],
         'sidebar': blocks['sidebar'],
         'footer': blocks['footer'],
         'permalink': permalink,
     }
+    if not banner:
+        context['banner'] = ''
+    else:
+        context['banner'] = banner[0]
 
     if permalink == 'python-workshops':
         rows = FOSSEEStats.objects.using('fossee_new').filter(

@@ -9,7 +9,7 @@ class Nav(models.Model):
     position = models.IntegerField()
     visible = models.BooleanField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.nav_name
 
 
@@ -21,7 +21,7 @@ class SubNav(models.Model):
     position = models.IntegerField()
     visible = models.BooleanField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.subnav_name
 
 
@@ -33,7 +33,7 @@ class Page(models.Model):
     visible = models.BooleanField()
     pub_date = models.DateTimeField('date published', auto_now_add=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.heading
 
 
@@ -41,7 +41,7 @@ class Block(models.Model):
     block_name = models.CharField(max_length=200)
     visible = models.BooleanField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.block_name
 
 
@@ -51,7 +51,7 @@ class LinkBox(models.Model):
     position = models.IntegerField()
     visible = models.BooleanField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.linkbox_name
 
 
@@ -62,8 +62,18 @@ class Link(models.Model):
     position = models.IntegerField()
     visible = models.BooleanField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.link_name
+
+
+class Banner(models.Model):
+    title = models.CharField(max_length=500)
+    banner = models.TextField(max_length=1000)
+    position = models.IntegerField()
+    visible = models.BooleanField()
+
+    def __str__(self):
+        return self.banner
 
 
 class TextBox(models.Model):
@@ -73,7 +83,7 @@ class TextBox(models.Model):
     position = models.IntegerField()
     visible = models.BooleanField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.textbox_name
 
 
