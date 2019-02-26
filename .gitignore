@@ -33,3 +33,11 @@ migrations/
 #MAC OS specific
 .DS_Store
 
+*~
+*.*~
+*.swp
+*.swo
+*.pyc
+*.bkp
+
+pyfoss/config.py

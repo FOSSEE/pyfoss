@@ -1,72 +1,91 @@
 from django.db import models
 
-class Nav(models.Model):
-	"""Main navigation links"""
-	nav_name = models.CharField(max_length=200)
-	link = models.CharField(max_length=200)
-	position = models.IntegerField()
-	visible = models.BooleanField()
 
-	def __unicode__(self):
-		return self.nav_name
+class Nav(models.Model):
+    """Main navigation links"""
+    nav_name = models.CharField(max_length=200)
+    link = models.CharField(max_length=200)
+    position = models.IntegerField()
+    visible = models.BooleanField()
+
+    def __str__(self):
+        return self.nav_name
+
 
 class SubNav(models.Model):
-	"""Navigation links for pages"""
-	nav = models.ForeignKey(Nav)
-	subnav_name = models.CharField(max_length=200)
-	link = models.CharField(max_length=200)
-	position = models.IntegerField()
-	visible = models.BooleanField()
+    """Navigation links for pages"""
+    nav = models.ForeignKey(Nav, on_delete=models.CASCADE)
+    subnav_name = models.CharField(max_length=200)
+    link = models.CharField(max_length=200)
+    position = models.IntegerField()
+    visible = models.BooleanField()
 
-	def __unicode__(self):
-		return self.subnav_name
+    def __str__(self):
+        return self.subnav_name
+
 
 class Page(models.Model):
-	"""Page that will be dispatched"""
-	permalink = models.CharField(max_length=200)
-	heading = models.CharField(max_length = 500)
-	content = models.TextField()
-	visible = models.BooleanField()
-	pub_date = models.DateTimeField('date published', auto_now_add=True)
+    """Page that will be dispatched"""
+    permalink = models.CharField(max_length=200)
+    heading = models.CharField(max_length=500)
+    content = models.TextField()
+    visible = models.BooleanField()
+    pub_date = models.DateTimeField('date published', auto_now_add=True)
 
-	def __unicode__(self):
-		return self.heading
+    def __str__(self):
+        return self.heading
+
 
 class Block(models.Model):
-	block_name = models.CharField(max_length=200)
-	visible = models.BooleanField()
+    block_name = models.CharField(max_length=200)
+    visible = models.BooleanField()
 
-	def __unicode__(self):
-		return self.block_name
+    def __str__(self):
+        return self.block_name
+
 
 class LinkBox(models.Model):
-	block = models.ForeignKey(Block)
-	linkbox_name = models.CharField(max_length=200)
-	position = models.IntegerField()
-	visible = models.BooleanField()
+    block = models.ForeignKey(Block, on_delete=models.CASCADE)
+    linkbox_name = models.CharField(max_length=200)
+    position = models.IntegerField()
+    visible = models.BooleanField()
 
-	def __unicode__(self):
-		return self.linkbox_name
+    def __str__(self):
+        return self.linkbox_name
+
 
 class Link(models.Model):
-	linkbox = models.ForeignKey(LinkBox)
-	link_name = models.CharField(max_length=200)
-	link = models.CharField(max_length=200)
-	position = models.IntegerField()
-	visible = models.BooleanField()
+    linkbox = models.ForeignKey(LinkBox, on_delete=models.CASCADE)
+    link_name = models.CharField(max_length=200)
+    link = models.CharField(max_length=200)
+    position = models.IntegerField()
+    visible = models.BooleanField()
 
-	def __unicode__(self):
-		return	self.link_name
+    def __str__(self):
+        return self.link_name
+
+
+class Banner(models.Model):
+    title = models.CharField(max_length=500)
+    banner = models.TextField(max_length=1000)
+    position = models.IntegerField()
+    visible = models.BooleanField()
+
+    def __str__(self):
+        return self.banner
+
 
 class TextBox(models.Model):
-	block = models.ForeignKey(Block)
-	textbox_name = models.CharField(max_length=200)
-	content = models.TextField()
-	position = models.IntegerField()
-	visible = models.BooleanField()
+    block = models.ForeignKey(Block, on_delete=models.CASCADE)
+    textbox_name = models.CharField(max_length=200)
+    content = models.TextField()
+    position = models.IntegerField()
+    visible = models.BooleanField()
 
-	def __unicode__(self):
-		return self.textbox_name
+    def __str__(self):
+        return self.textbox_name
+
+
 """
 Models from fossee_new Database created using inspectdb
 Use it with the "fossee_in" database eg:using("fossee_in")
@@ -86,41 +105,44 @@ CATEGORY = (("fluid mechanics", "Fluid Mechanics"),
             ("computer programming", "Computer Programming"),
             ("others", "Others"))
 
+
 class FOSSEEStats(models.Model):
-	w_id = models.IntegerField(unique=True, primary_key=True)
-	foss_name = models.CharField(max_length=500)
-	type = models.CharField(max_length=50)
-	w_name = models.CharField(max_length=500)
-	body = models.TextField()
-	no_of_participant	 = models.IntegerField()
-	event_link = models.TextField()
-	startdate = models.DateTimeField()
-	starttime = models.TimeField()
-	enddate = models.DateTimeField()
-	endtime = models.TimeField()
-	venue = models.CharField(max_length=500)
-	street = models.CharField(max_length=500)
-	country = models.CharField(max_length=100)
-	state = models.CharField(max_length=100)
-	city = models.CharField(max_length=100)
-	pincode = models.IntegerField(default=0)
-	class Meta:
-		db_table = 'workshop'
+    w_id = models.IntegerField(unique=True, primary_key=True)
+    foss_name = models.CharField(max_length=500)
+    type = models.CharField(max_length=50)
+    w_name = models.CharField(max_length=500)
+    body = models.TextField()
+    no_of_participant = models.IntegerField()
+    event_link = models.TextField()
+    startdate = models.DateField()
+    starttime = models.TimeField()
+    enddate = models.DateField()
+    endtime = models.TimeField()
+    venue = models.CharField(max_length=500)
+    street = models.CharField(max_length=500)
+    country = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    pincode = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'workshop'
+
 
 class TBCPYTHONBook(models.Model):
-	title = models.CharField(max_length=500)
-	author = models.CharField(max_length=300)
-	category = models.CharField(max_length=32, choices=CATEGORY)
-	publisher_place = models.CharField(max_length=150)
-	isbn = models.CharField(max_length=50)
-	edition = models.CharField(max_length=15)
-	year_of_pub = models.CharField(max_length=4)
-	no_chapters = models.IntegerField(default=0, blank=True)
-	contributor = models.IntegerField(default=0, blank=True)
-	reviewer = models.IntegerField(default=0, blank=True)
-	approved = models.BooleanField(default=False)
-	start_time = models.DateField(null=True, default=None)
-	end_time = models.DateField(null=True, default=None)
-	class Meta:
-		db_table = 'tbc_book'
+    title = models.CharField(max_length=500)
+    author = models.CharField(max_length=300)
+    category = models.CharField(max_length=32, choices=CATEGORY)
+    publisher_place = models.CharField(max_length=150)
+    isbn = models.CharField(max_length=50)
+    edition = models.CharField(max_length=15)
+    year_of_pub = models.CharField(max_length=4)
+    no_chapters = models.IntegerField(default=0, blank=True)
+    contributor = models.IntegerField(default=0, blank=True)
+    reviewer = models.IntegerField(default=0, blank=True)
+    approved = models.BooleanField(default=False)
+    start_time = models.DateField(null=True, default=None)
+    end_time = models.DateField(null=True, default=None)
 
+    class Meta:
+        db_table = 'tbc_book'
