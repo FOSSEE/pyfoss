@@ -99,19 +99,6 @@ DATABASES = {
         # Set to empty string for default.
         'PORT': DB_PORT_FOSSEEIN,
     },
-    'tbcpython': {
-        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'ENGINE': 'django.db.backends.mysql',
-        # Or path to database file if using sqlite3.
-        'NAME': DB_NAME_TBC_PYTHON,
-        'USER': DB_USER_TBC_PYTHON,
-        'PASSWORD': DB_PASS_TBC_PYTHON,
-        # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'HOST': DB_HOST_TBC_PYTHON,
-        # Set to empty string for default.
-        'PORT': DB_PORT_TBC_PYTHON,
-
-    }
 }
 
 

@@ -59,10 +59,7 @@ def dispatcher(request, permalink=''):
     if permalink == 'textbook-companions-for-academics':
         textbook_companions_for_academics = Page.objects.get(
             permalink='textbook-companions-for-academics')
-        completed_books = TBCPYTHONBook.objects.using('tbcpython').values(
-            'id', 'title', 'author').filter(approved=True).order_by('id')
         context['page'] = textbook_companions_for_academics
-        context['obj'] = completed_books
 
     if permalink == '' or permalink == 'home':
         permalink = 'home'
