@@ -1,8 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, get_object_or_404
-from website.models import FOSSEEStats, TBCPYTHONBook
-
-from website.models import Nav, Page, Block, Banner
+from website.models import Nav, Page, Block, Banner, FOSSEEStats
 
 
 def block_sort(obj):
