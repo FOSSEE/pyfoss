@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, get_object_or_404
 from website.models import Nav, Page, Block, Banner, FOSSEEStats
+from website.rss import get_rss
 
 
 def block_sort(obj):
@@ -34,13 +35,19 @@ def get_blocks():
 def dispatcher(request, permalink=''):
 
     blocks = get_blocks()
+    rssfeed = get_rss()
     banner = Banner.objects.filter(visible=1)
     context = {
         'navs': blocks['navs'],
         'sidebar': blocks['sidebar'],
         'footer': blocks['footer'],
-        'permalink': permalink,
+        'permalink': permalink
     }
+    if not rssfeed:
+        context['rssfeed'] = [('Click here for latest news from python.org',
+                               'https://pythoninsider.blogspot.com/')]
+    else:
+        context['rssfeed'] = rssfeed
     if not banner:
         context['banner'] = ''
     else:

@@ -170,6 +170,14 @@
             {% block footer %}
             <div id="footer-wrapper">
                 <div id="footer-inner">
+                <div class="foot col-lg-4 col-md-4 col-sm-4">
+                    <h5 class="foot-heading">Latest News</h4>
+                    <ul>
+                    {% for key, value in rssfeed %}
+                    <li><a href="{{ value }}" target="_blank"> {{ key }}</a></li>
+                    {% endfor %}
+                    </ul>
+                    </div> <!-- /foot -->
                     {% for block in footer %}
                     {% if block.linkbox_name %}
                     <div class="foot col-lg-4 col-md-4 col-sm-4">
@@ -185,7 +193,7 @@
                     </ul>
                     </div> <!-- /foot -->
                     {% endif %}
-
+                    
                     {% if block.textbox_name %}
                     <div class="foot col-lg-4 col-lg-4 col-sm-4">
                     <h5 class="foot-heading">{{ block.textbox_name }}</h4>
@@ -208,6 +216,7 @@
            </center>
             {% endblock %}
         {% endblock %}
+       
         </div> <!-- /page-wrapper -->
 <div id="credits">
 <center>
