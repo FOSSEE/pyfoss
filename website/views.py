@@ -35,7 +35,6 @@ def get_blocks():
 def dispatcher(request, permalink=''):
 
     blocks = get_blocks()
-    rssfeed = get_rss()
     banner = Banner.objects.filter(visible=1)
     context = {
         'navs': blocks['navs'],
@@ -43,11 +42,11 @@ def dispatcher(request, permalink=''):
         'footer': blocks['footer'],
         'permalink': permalink
     }
-    if not rssfeed:
+    if not get_rss():
         context['rssfeed'] = [('Click here for latest news from python.org',
                                'https://pythoninsider.blogspot.com/')]
     else:
-        context['rssfeed'] = rssfeed
+        context['rssfeed'] = get_rss()
     if not banner:
         context['banner'] = ''
     else:
