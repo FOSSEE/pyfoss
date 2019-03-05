@@ -3,7 +3,7 @@ import eventlet
 
 
 with eventlet.Timeout(10):
-    url = 'http://feeds.feedburner.com/PythonInsider/.rss'
+    url = 'http://afeeds.feedburner.com/PythonInsider/.rss'
 
 
 def get_rss():
@@ -18,6 +18,4 @@ def get_rss():
     if not posts_to_show:
         posts_to_show = [('Click here for latest news from python.org',
                                'https://pythoninsider.blogspot.com/')]
-        return posts_to_show
-    else:
-        return posts_to_show
+    return posts_to_show
