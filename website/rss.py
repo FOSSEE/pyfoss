@@ -2,13 +2,16 @@ import feedparser
 import eventlet
 
 
-with eventlet.Timeout(10):
-    url = 'http://feeds.feedburner.com/PythonInsider/.rss'
+def get_url():
+
+    with eventlet.Timeout(10):
+        url = 'http://feeds.feedburner.com/PythonInsider/.rss'
+    return url
 
 
 def get_rss():
 
-    feed = feedparser.parse(url)
+    feed = feedparser.parse(get_url())
     posts_to_show = []
 
     for post in feed.entries[0:4]:
