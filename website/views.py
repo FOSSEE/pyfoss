@@ -40,13 +40,9 @@ def dispatcher(request, permalink=''):
         'navs': blocks['navs'],
         'sidebar': blocks['sidebar'],
         'footer': blocks['footer'],
-        'permalink': permalink
+        'permalink': permalink,
+        'rssfeed' : get_rss()
     }
-    if not get_rss():
-        context['rssfeed'] = [('Click here for latest news from python.org',
-                               'https://pythoninsider.blogspot.com/')]
-    else:
-        context['rssfeed'] = get_rss()
     if not banner:
         context['banner'] = ''
     else:

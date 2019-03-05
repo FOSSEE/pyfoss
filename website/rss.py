@@ -15,4 +15,9 @@ def get_rss():
         title = post.title
         link = post.link
         posts_to_show.append((title, link))
-    return posts_to_show
+    if not posts_to_show:
+        posts_to_show = [('Click here for latest news from python.org',
+                               'https://pythoninsider.blogspot.com/')]
+        return posts_to_show
+    else:
+        return posts_to_show
