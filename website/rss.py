@@ -3,7 +3,7 @@ import eventlet
 
 
 with eventlet.Timeout(10):
-    url = 'http://afeeds.feedburner.com/PythonInsider/.rss'
+    url = 'http://feeds.feedburner.com/PythonInsider/.rss'
 
 
 def get_rss():
