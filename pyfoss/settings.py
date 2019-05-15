@@ -144,3 +144,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/../static/',
 ]
+
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_SAMESITE = 'Strict'
+SESSION_COOKIE_PATH = '/;HttpOnly'
+SESSION_COOKIE_SECURE = True
