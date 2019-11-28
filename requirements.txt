@@ -1,5 +1,11 @@
-Django==2.1.7
+Django==2.2.7
 django-nested-inline==0.3.7
-mysqlclient==1.4.2.post1
-eventlet==0.24.1
+dnspython==1.16.0
+eventlet==0.25.1
 feedparser==5.2.1
+greenlet==0.4.15
+monotonic==1.5
+mysqlclient==1.4.6
+pytz==2019.3
+six==1.13.0
+sqlparse==0.3.0
