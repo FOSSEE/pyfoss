@@ -15,7 +15,7 @@ from .config import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROJECT_DIR = os.path.abspath(os.path.dirname(__file__) + '/../')
+#PROJECT_DIR = os.path.abspath(os.path.dirname(__file__) + '/../')
 
 
 # Quick-start development settings - unsuitable for production
@@ -59,7 +59,7 @@ ROOT_URLCONF = 'pyfoss.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [PROJECT_DIR + '/static/website/templates', ],
+        'DIRS': [BASE_DIR + '/static/website/templates', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,11 +140,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = PROJECT_DIR + '/assets/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/../static/',
-]
+#STATIC_ROOT = PROJECT_DIR + '/assets/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, "static"),
+#    '/../static/',
+#]
 
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
