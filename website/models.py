@@ -72,7 +72,7 @@ class Banner(models.Model):
     visible = models.BooleanField()
 
     def __str__(self):
-        return self.banner
+        return self.title
 
 
 class TextBox(models.Model):
