@@ -15,7 +15,7 @@
     <body>
   <link rel="stylesheet" type="text/css" href="https://fossee.in/data/banner/css/nice-bar.css" />
   <script type="text/javascript" src="https://fossee.in/data/banner/js/nice-bar.js"></script>
-  {{ banner | safe }}
+  {{ banner.banner | safe }}
          <div id="page-wrapper">
         {% block page %}
 
@@ -222,7 +222,7 @@
 <center>
 	This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br />
 	<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
-	<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+	<img alt="Creative Commons License" style="border-width:0" src="{% static 'website/images/88x31.png' %} /></a>
 </center>
 </div>
 
